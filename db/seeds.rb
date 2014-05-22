@@ -5,3 +5,13 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+#
+
+100.times do
+  Buddy.create({
+    nick: Forgery(:name).first_name,
+    birthdate: rand(100.years).ago,
+    bodysize: rand(120...210),
+    strong: Forgery(:basic).boolean
+  })
+end
