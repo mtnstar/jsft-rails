@@ -48,3 +48,5 @@ gem "haml"
 gem "rspec-rails", group: [:development, :test]
 
 gem 'forgery', '0.6.0'
+
+gem "active_model_serializers"
