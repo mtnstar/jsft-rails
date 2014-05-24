@@ -79,7 +79,7 @@
 
   <!-- ember templates -->
   <script type="text/x-handlebars" id="about">
-    <p>emberJS</p>
+    <img src="img/ember.png"></img>
   </script>
 
   <script type="text/x-handlebars" id="buddies">
@@ -103,30 +103,48 @@
             {{#each itemController='buddy'}}
             <tr class="buddy">
               <td>
-                <div class="collapse in view-buddy">
+                {{#if isEditing}}
+                  {{input size="10" type="text" class="form-control "value=nick}}
+                {{else}}
                   {{nick}}
-                </div>
-                <div class="collapse out edit-buddy">
-                  {{input type="text" class="form-control "value=nick}}
-                </div>
+                {{/if}}
               </td>
-              <td>{{format-date birthdate}}</td>
-              <td>{{bodysize}}</td>
-              <td>{{strong}}</td>
               <td>
-                <div class="collapse in view-buddy">
-                  <button type="button" class="btn btn-default edit-buddy-btn">
-                    <span class="glyphicon glyphicon-pencil"></span>
-                  </button>
-                  <button {{action 'delete' buddy}} type="button" class="btn btn-default">
-                    <span class="glyphicon glyphicon-trash"></span>
-                  </button>
-                </div>
-                <div class="collapse out edit-buddy">
+                {{#if isEditing}}
+                  {{input size="10" type="text" class="form-control "value=birthdate}}
+                {{else}}
+                  {{format-date birthdate}}
+                {{/if}}
+              </td>
+              <td>
+                {{#if isEditing}}
+                  {{input size="10" type="text" class="form-control "value=bodysize}}
+                {{else}}
+                  {{bodysize}}
+                {{/if}}
+              </td>
+              <td>
+                {{#if isEditing}}
+                  {{input type="checkbox" class="form-control" checked=strong}}
+                {{else}}
+                  {{strong}}
+                {{/if}}
+              </td>
+              <td>
+                {{#if isEditing}}
                   <button {{action 'save' buddy}} type="button" class="btn btn-default">
                     Save
                   </button>
-                </div>
+                {{else}}
+                  <div class="collapse in view-buddy">
+                    <button {{action 'edit'}} type="button" class="btn btn-default">
+                      <span class="glyphicon glyphicon-pencil"></span>
+                    </button>
+                    <button {{action 'delete' buddy}} type="button" class="btn btn-default">
+                      <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                  </div>
+                {{/if}}
               </td>
             </tr>
             {{/each}}
