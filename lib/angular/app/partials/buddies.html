@@ -1,23 +1,24 @@
 <div class="edit well">
-  <form class="form-inline" role="form">
+  <div class="form-inline">
     <div class="form-group">
       <label for="nick">Nick</label>
-      <input type="text" class="form-control" id="nick" placeholder="Nickname">
+      <input type="text" class="form-control" id="nick" placeholder="Nickname" ng-model="newBuddy.nick">
     </div>
     <div class="form-group">
       <label for="birthdate">birthdate</label>
-      <input size="16" type="text" class="form-control datepicker" id="birthdate" placeholder="Birthdate" value="15.05.1992">
+      <input ng-click="open($event)" ng-model="newBuddy.birthdate" datepicker-popup="dd.MM.yyyy" size="16" type="text" class="form-control datepicker" id="birthdate">
     </div>
     <div class="form-group">
       <label class="control-label" for="bodysize">bodysize</label>
-      <input size="4" type="text" class="form-control" id="bodysize" placeholder="Size">
+      <input ng-model="newBuddy.bodysize" size="4" type="text" class="form-control" id="bodysize" placeholder="Size">
     </div>
     <div class="form-group">
       <label class="checkbox-inline">
-        <input type="checkbox" id="strong" value="">Strong
+        <input ng-model="newBuddy.strong" type="checkbox" id="strong" value="">Strong
       </label>
     </div>
-    <button type="submit" class="btn btn-primary">Save</button>
+    <button type="submit" class="btn btn-primary" ng-click="createBuddy()">Create</button>
+  </div>
 </div>
 
 <div class="list">
@@ -37,18 +38,44 @@
     </thead>
     <tbody>
       <tr ng-repeat="buddy in buddies">
-        <td>{{buddy.nick}}
-        </td>
-        <td>{{buddy.birthdate}}</td>
-        <td>{{buddy.bodysize}}</td>
-        <td>{{buddy.strong}}</td>
         <td>
-          <button type="button" class="btn btn-default">
-            <span class="glyphicon glyphicon-pencil"></span>
-          </button>
-          <button type="button" class="btn btn-default">
-            <span class="glyphicon glyphicon-trash"></span>
-          </button>
+          <span ng-hide="editing">{{buddy.nick}}</span>
+          <span ng-show="editing">
+            <input size="10" type="text" class="form-control" ng-model="buddy.nick">
+          </span>
+        </td>
+        <td>
+          <span ng-hide="editing">{{buddy.birthdate}}</span>
+          <span ng-show="editing">
+            <input size="12" type="text" class="form-control" ng-model="buddy.birthdate">
+          </span>
+        </td>
+        <td>
+          <span ng-hide="editing">{{buddy.bodysize}}</span>
+          <span ng-show="editing">
+            <input size="4" type="text" class="form-control" ng-model="buddy.bodysize">
+          </span>
+        </td>
+        <td>
+          <span ng-hide="editing">{{buddy.strong}}</span>
+          <span ng-show="editing">
+            <input ng-model="buddy.strong" type="checkbox">
+          </span>
+        </td>
+        <td>
+          <span ng-hide="editing">
+            <button type="button" class="btn btn-default" ng-click="editing = true">
+              <span class="glyphicon glyphicon-pencil"></span>
+            </button>
+            <button type="button" class="btn btn-default" ng-click="deleteBuddy(buddy)">
+              <span class="glyphicon glyphicon-trash"></span>
+            </button>
+          </span>
+          <span ng-show="editing">
+            <button type="button" class="btn btn-default" ng-click="editing = false; updateBuddy(buddy)">
+              Save
+            </button>
+          </span>
         </td>
       </tr>
     </tbody>
