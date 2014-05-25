@@ -1,0 +1,23 @@
+body {
+  padding-top: 50px;
+}
+.list {
+  padding: 15px;
+}
+
+.edit {
+  padding: 15px;
+  margin: 10px;
+}
+
+.edit .form-group {
+  padding-left: 20px;
+}
+
+.edit label {
+  padding-right: 20px;
+}
+
+.action {
+  width: 100px;
+}
