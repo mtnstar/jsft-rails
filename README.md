@@ -12,16 +12,20 @@ clone this repository
   git clone https://github.com/psunix/jsft-rails.git
 
 change to new directory
-  cd jsft-rails
+
+    cd jsft-rails
 
 install depenencies
-  bundle install
+    
+    bundle install
 
 create db and load seeds
- rake db:migrate db:seed
+    
+    rake db:migrate db:seed
 
 run server
- rails s
+ 
+    rails s
 
 now you're ready to access the applications
 
